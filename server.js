@@ -19,13 +19,13 @@ app.get("/", (req, res) => {
 });
 
 // Product routes
-app.use("/api/products", productRoutes);
+app.use("/products", productRoutes);
 
 // Order routes
-app.use("/api/orders", orderRoutes);
+app.use("/orders", orderRoutes);
 
 // Basket routes
-app.use("/api/baskets", basketRoutes);
+app.use("/baskets", basketRoutes);
 
 
 // Swagger options & specs
