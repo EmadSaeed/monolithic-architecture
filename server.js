@@ -19,13 +19,13 @@ app.get("/", (req, res) => {
 });
 
 // Product routes
-app.use("/products", productRoutes);
+app.use("/api/products", productRoutes);
 
 // Order routes
-app.use("/orders", orderRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Basket routes
-app.use("/baskets", basketRoutes);
+app.use("/api/baskets", basketRoutes);
 
 
 // Swagger options & specs
@@ -44,7 +44,7 @@ const options = {
         },
         servers: [
             {
-                url: "http://localhost:8000",
+                url: "http://13.48.57.5:8000",
             },
         ],
     },
