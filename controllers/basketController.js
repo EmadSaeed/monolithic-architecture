@@ -44,7 +44,7 @@ const deleteBasket = async (req, res) => {
     try {
         const basket = await basketModel.findOne({ userId: req.params.userId });
         if (basket) {
-            await basket.remove();
+            await basket.deleteOne();
             res.json({ message: "Basket removed" });
         }
     } catch (error) {

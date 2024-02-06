@@ -30,8 +30,9 @@ const createProduct = async (req, res) => {
             brand: req.body.brand,
             image: req.body.image,
             price: req.body.price,
-            countInStock: req.body.countInStock,
+            countInStock: req.body.countInStock
         });
+
         const newProduct = await product.save();
         res.status(201).json(newProduct);
     } catch (error) {
@@ -65,7 +66,7 @@ const deleteProduct = async (req, res) => {
     try {
         const product = await productModel.findById(req.params.id);
         if (product) {
-            await product.remove();
+            await product.deleteOne();
             res.json({ message: "Product removed" });
         }
     } catch (error) {

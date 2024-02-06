@@ -25,29 +25,24 @@ const getOrderById = async (req, res) => {
 // Create new order
 const addOrderItems = async (req, res) => {
     try {
-        const {
-            orderItems,
-            shippingAddress,
-            paymentMethod,
-            itemsPrice,
-            shippingPrice,
-            totalPrice,
-        } = req.body;
+        const order = new orderModel({
+            orderItems: req.body.orderItems,
+            shippingAddress: req.body.shippingAddress,
+            paymentMethod: req.body.paymentMethod,
+            itemsPrice: req.body.itemsPrice,
+            shippingPrice: req.body.shippingPrice,
+            totalPrice: req.body.totalPrice,
+            user: req.body.user,
+            isPaid: req.body.isPaid,
+            paidAt: req.body.paidAt,
+            isDelivered: req.body.isDelivered,
+            deliveredAt: req.body.deliveredAt,
+        });
 
-        if (orderItems && orderItems.length === 0) {
+        if (order.orderItems && order.orderItems.length === 0) {
             res.status(400).json({ message: 'No order items' });
             return;
         } else {
-            const order = new orderModel({
-                orderItems,
-                user: req.user._id,
-                shippingAddress,
-                paymentMethod,
-                itemsPrice,
-                shippingPrice,
-                totalPrice,
-            });
-
             const createdOrder = await order.save();
             res.status(201).json(createdOrder);
         }
@@ -65,15 +60,14 @@ const updateOrderToPaid = async (req, res) => {
             order.isPaid = true;
             order.paidAt = Date.now();
             order.paymentResult = {
-                id: req.body.id,
-                status: req.body.status,
-                update_time: req.body.update_time,
-                email_address: req.body.payer.email_address,
-            };
+                id: req.params.id
+            }
 
             const updatedOrder = await order.save();
             res.json(updatedOrder);
         }
+
+
     } catch (error) {
         res.status(500).json({ message: 'Server Error' });
     }
@@ -85,7 +79,7 @@ const deleteOrder = async (req, res) => {
         const order = await orderModel.findById(req.params.id);
 
         if (order) {
-            await order.remove();
+            await order.deleteOne();
             res.json({ message: 'Order removed' });
         }
     } catch (error) {

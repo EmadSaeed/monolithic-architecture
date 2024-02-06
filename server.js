@@ -25,7 +25,7 @@ app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 
 // Basket routes
-app.use("/baskets", basketRoutes);
+app.use("/basket", basketRoutes);
 
 
 // Swagger options & specs
@@ -44,8 +44,12 @@ const options = {
         },
         servers: [
             {
-                url: "http://13.48.57.5:8000",
+                url: "http://localhost:8000",
             },
+            {
+                url: "http://13.48.57.5:8000",
+
+            }
         ],
     },
     apis: ["./routes/*.js"],
