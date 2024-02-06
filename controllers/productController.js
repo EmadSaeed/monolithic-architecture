@@ -32,9 +32,12 @@ const createProduct = async (req, res) => {
             price: req.body.price,
             countInStock: req.body.countInStock
         });
+        console.log(req.body);
+
 
         const newProduct = await product.save();
         res.status(201).json(newProduct);
+
     } catch (error) {
         res.status(500).json({ message: "Server Error" });
     }

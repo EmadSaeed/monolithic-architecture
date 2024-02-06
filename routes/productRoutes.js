@@ -11,9 +11,6 @@
  *   Product:
  *     type: object
  *     properties:
- *       productId:
- *         type: string
- *         description: The unique identifier for the product.
  *       productName:
  *         type: string
  *         description: The name of the product.
