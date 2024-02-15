@@ -20,9 +20,9 @@
  *       price:
  *         type: number
  *         description: The price of the ordered item.
- *       product:
+ *       image:
  *         type: string
- *         description: The ID of the product in the order.
+ *         description: The image URL of the ordered item.
  *
  *   ShippingAddress:
  *     type: object
