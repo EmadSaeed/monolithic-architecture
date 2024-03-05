@@ -47,7 +47,7 @@ const options = {
                 url: "http://localhost:8000",
             },
             {
-                url: "http://13.48.57.5:8000",
+                url: "http://13.53.230.235:8000",
 
             }
         ],
